@@ -68,7 +68,7 @@ public class NotePadApp extends Application{
         openItem = new MenuItem("Open");
         openItem.setAccelerator(KeyCombination.keyCombination("Alt+o"));
 //        Image image = new Image("../images/icon.png", 4, 4, false, false);
-        openItem.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../images/icon.png"))));
+//        openItem.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("../images/icon.png"))));
         saveItem = new MenuItem("Save");
         saveItem.setAccelerator(KeyCombination.keyCombination("Alt+s"));
         exitItem = new MenuItem("Exit");
@@ -168,6 +168,7 @@ public class NotePadApp extends Application{
                             } catch (IOException ex) {
                                 Logger.getLogger(NotePadApp.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                        }
                     } else if (result.get() == buttonTypeDontSave) {
                         // ... user chose
                     } else {
@@ -175,8 +176,7 @@ public class NotePadApp extends Application{
                     }
                 }
                 myTextArea.clear();
-                }
-            }
+            }    
         });
 
         openItem.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>(){
@@ -209,7 +209,6 @@ public class NotePadApp extends Application{
                         }
                     }
                 }
-
             }
         });
 
@@ -300,13 +299,13 @@ public class NotePadApp extends Application{
                             } catch (IOException ex) {
                                 Logger.getLogger(NotePadApp.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        } else if (result.get() == buttonTypeDontSave) {
-                            // ... user chose
-                        } else {
-                            // ... user chose CANCEL or closed the dialog
+                            Platform.exit();
                         }
+                    } else if (result.get() == buttonTypeDontSave) {
+                            Platform.exit();
+                    } else {
+                            // ... user chose CANCEL or closed the dialog
                     }
-                    Platform.exit();
                 }
             }
         });
